@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="static/popper.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <title>Virtual Try-On on Web</title>
+
+</head>
+
+<body class="text-light text-dark">
+
+    <div class="jumbotron">
+        <h1>PwC AI PoC: Digital Stylist</h1>
+        <h1>Virtual Try On</h1>
+    </div>
+    <div class="container" bgcolor="#ffffee">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="model_image">
+                <h3>Find a model for the garment you wish to try on</h3>
+                <p>Select a model image below</p>
+
+                <!-- <div class="row"> -->
+                <div>
+                    {%if person_list%}
+                    {% for name, index in person_list %}
+                    <!-- <div class="col"> -->
+                    <label>
+                        <input type="radio" name="p_optionsRadios" id="options{{index}}" value="option{{index}}">
+                        <img src="{{name}}">
+                    </label>
+                    <!-- </div> -->
+                    {% endfor %}
+                    {%endif%}
+                </div>
+                <!-- </div> -->
+                <p>Alternatively, you may upload your personal model image</p>
+                <input id="person_image" name="person_image" type="file" class="file" data-show-preview="False"
+                    accept=".jpg, .jpeg">
+            </div>
+
+
+
+            <HR style="border:1 dashed #d2cdc8" width="100%" color=#987cb9 SIZE=1>
+            <div class="closet">
+                <h3>Pick a garment from our digital store you wish to try on</h3>
+                <p>
+                    {%if img_list%}
+                    {% for name, index in img_list %}
+                    <label>
+                        <input type="radio" name="c_optionsRadios" id="options{{index}}" value="option{{index}}">
+                        <img src="{{name}}">
+                    </label>
+                    {% endfor %}
+                    {%endif%}
+                </p>
+            </div>
+            <div>
+                <p>Alternatively, you may upload your personal cloth image you would like to try on (Only limited to
+                    192*256)</p>
+                <input id="cloth_image" name="cloth_image" type="file" class="file" data-show-preview="false"
+                    accept=".jpg, .jpeg">
+            </div>
+            <HR style="border:1 dashed #d2cdc8" width="100%" color=#987cb9 SIZE=1>
+
+            <button type="submit" class="btn btn-success">Confirm</button>
+        </form>
+
+        <HR style="border:1 dashed #d2cdc8" width="100%" color=#987cb9 SIZE=2>
+
+
+        {%if result1 %}
+        <h3>Here is your try-On Result! </h3>
+        <img src="{{result1}}" width=192>
+        <img src="{{result2}}" width=192>
+        {% endif %}
+        {% if info %}
+        <h6> Result info: <br>{{info}}</h6>
+        {%endif%}
+
+        <HR style="border:1 dashed #d2cdc8" width="100%" color=#987cb9 SIZE=2>
+        <p>
+            Powered by PwC AI PoC team
+        </p>
+    </div>
+
+</body>
+
+</html>
