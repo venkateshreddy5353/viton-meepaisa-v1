@@ -5,7 +5,7 @@ static/result/*.jpg
 .ipynb_checkpoints/*
 __pycache__/*
 server.log
-*.jpg
+# *.jpg
 easy_example/*
 static/backup/*
 static/backup_jd/*
