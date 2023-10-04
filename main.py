@@ -5,7 +5,7 @@ This file implements the web server on flask.
 It can provide web service, response all predict requests.
 '''
 import os
-from flask import Flask, render_template, request, url_for, send_from_directory
+from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 from PIL import Image
 import numpy as np
@@ -57,7 +57,7 @@ person_list_raw = os.listdir(os.path.join(BASE_DIR, "static/web_option", "person
 person_list = []
 p_counter = 0
 for person in person_list_raw:
-    if 'jpg' in person:
+    if 'png' in person:
         person_list.append([os.path.join("./static/web_option","person",person), p_counter])
         p_counter += 1
 
@@ -66,10 +66,11 @@ cloth_list_raw = os.listdir(os.path.join(BASE_DIR, "static/web_option", "cloth")
 cloth_list = []
 c_counter = 0
 for cloth in cloth_list_raw:
-    if 'jpg' in cloth:
+    if 'png' in cloth:
         cloth_list.append([os.path.join("./static/web_option", "cloth", cloth), c_counter])
         c_counter += 1
-
+print(cloth_list)
+print(person_list)
 # Use "/web" url to get web page
 @app.route('/web')
 def hello_world():
@@ -106,8 +107,7 @@ def upload_image():
         
         print(f"You are going to try on {cloth_image} with {person_image} as model...")
         start_time = time.time()
-        o_name, h_name = run_model_web(
-            person_image, cloth_list[c_index][0].split("\\")[-1], cloth_image)
+        o_name, h_name = run_model_web(person_image, cloth_list[c_index][0].split("\\")[-1], cloth_image)
         end_time = time.time()
         if o_name is None: # bad cloth image
             return 'I told you only clothes image with shape 256*192*3'
@@ -142,7 +142,7 @@ def run_model_web(f, cloth_name, cloth_f=None):
         int(time.time()), cloth_name.split("/")[-1]))
     temp_h_name = os.path.join("static", "human", "%d_%s" % (
         int(time.time()), cloth_name.split("/")[-1]))
-
+    print(c_img.shape[0],c_img.shape[1],c_img.shape[2])
     if c_img.shape[0] != 256 or c_img.shape[1] != 192 or c_img.shape[2] != 3:
         return None, None
 

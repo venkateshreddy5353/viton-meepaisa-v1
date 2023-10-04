@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from tensorflow.python.platform import gfile
 
 import time
+tf.compat.v1.disable_eager_execution()
 
 class JPP(object):
     
@@ -18,15 +19,15 @@ class JPP(object):
     IMG_MEAN = np.array((104.00698793,116.66876762,122.67891434), dtype=np.float32)
     
     def __init__(self, pb_path):
-        options = tf.GPUOptions(allow_growth=True)
-        sess = tf.Session(config=tf.ConfigProto(gpu_options=options)) 
-        self.sess = tf.Session()
+        options = tf.compat.v1.GPUOptions(allow_growth=True)
+        sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(gpu_options=options)) 
+        self.sess = tf.compat.v1.Session()
         with gfile.FastGFile(pb_path, 'rb') as f:
-            graph_def = tf.GraphDef()
+            graph_def = tf.compat.v1.GraphDef()
             graph_def.ParseFromString(f.read())
             self.sess.graph.as_default()
             tf.import_graph_def(graph_def, name='') # import compute graph
-        self.sess.run(tf.global_variables_initializer())
+        self.sess.run(tf.compat.v1.global_variables_initializer())
         self.img_tensor = sess.graph.get_tensor_by_name('img_1:0')
         self.pose_tensor = sess.graph.get_tensor_by_name('pose:0')
         self.parse_tensor = sess.graph.get_tensor_by_name('parse:0')

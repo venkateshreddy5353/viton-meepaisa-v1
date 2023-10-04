@@ -10,4 +10,5 @@ easy_example/*
 static/backup/*
 static/backup_jd/*
 .vscode/*
+.DS_Store
 
