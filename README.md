@@ -1,6 +1,4 @@
-# Vitrual Try-On *Flask*
-
-[中文文档📚](http://github.com/GrayXu/Virtual-Try-On-Flask/blob/master/README_cn.md)
+# viton-meepaisa-v1 *Flask*
 
 ![20200118004320.png](https://raw.githubusercontent.com/GrayXu/Online-Storage/master/img/20200118004320.png)![20200118004342.png](https://raw.githubusercontent.com/GrayXu/Online-Storage/master/img/20200118004342.png)![20200118004359.png](https://raw.githubusercontent.com/GrayXu/Online-Storage/master/img/20200118004359.png)
 
@@ -47,14 +45,9 @@ def predict(self, human_img, c_img, need_pre=True, need_bright=False, keep_back=
 
 # Dependency
 
-Recommended python version==3.6
+Recommended python version==3.11
 `pip install -r requirements.txt`
-
-~~*tensorflow==1.12.0  
-torch==1.2.0
-torchvision==0.2.0*~~  
-
-~~*For now, GPU environment is essential. If you want to run it on CPU environment, delete all ` ` calls in CPVTON.py and Networks.py.*~~   
+ 
 CPU Mode: `Model(.., use_cuda = False)`
 
 # Hardware Usage
@@ -90,8 +83,7 @@ checkpoints/\* | checkpoints dir
 
 # Checkpoints
 
-~~*coming soon..*~~  
-download link on [*Google Drive*](https://drive.google.com/file/d/125UtOS4T4RBji8lXtm9WEwD1KcHG4F1g/view?usp=sharing) and [*Baidu Pan*](https://pan.baidu.com/s/1e8tKEz7hpHAxqV6B5_hOIw)
+download link on [*Google Drive*](https://drive.google.com/file/d/1oJ1R68rNqAoZLQfr3P_bIPOVGymmgJwa/view?usp=drive_link) 
 
 
 # TODO List
@@ -114,5 +106,3 @@ Model designs are based on JPP-Net & CPVTON, and their open-source repo on Githu
 [(**JPP-Net**) Look into Person: Joint Body Parsing & Pose Estimation Network and A New Benchmark](https://arxiv.org/abs/1804.01984), Xiaodan Liang, Ke Gong, Xiaohui Shen, Liang Lin, **T-PAMI 2018**.
 
 ----
-
-*Powered By **Imba**, [JD Digits](https://www.jddglobal.com/)*
