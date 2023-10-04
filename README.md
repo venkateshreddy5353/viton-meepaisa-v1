@@ -13,6 +13,8 @@ Feature:
 ## Run complete server codes
 
 1. Download 3 [pretrained models](#checkpoints) to `/checkpoints`.
+2. activate virtualenv in python, if it's not installed, install it using pip install virtualenv and then activate a new env with this command "virtualenv vnev"
+3. activate virtualenv using this command for linux 'source .venv/bin/activate'
 2. install [dependency packages](#Dependency)
 3. Start Flask service `python main.py`
 
